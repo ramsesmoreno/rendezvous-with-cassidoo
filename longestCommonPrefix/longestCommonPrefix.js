@@ -1,5 +1,4 @@
 function longestCommonPrefix(strings) {
-  // Create a list of prefixes
   const prefixes = strings.reduce((acc, string) => {
     for (let c= 0; c < string.length; c++) {
       const prefix = string.substring(0, c+1)
@@ -9,7 +8,10 @@ function longestCommonPrefix(strings) {
     return acc
   }, {})
   const longestPrefix = Object.entries(prefixes).reduce((acc, [prefix, count]) => {
-    if ((prefix.length > acc.prefix.length && count > 1) || (prefix.length === acc.prefix.length && count > acc.count)) return { prefix, count }
+    if (
+      (prefix.length > acc.prefix.length && count > 1) ||
+      (prefix.length === acc.prefix.length && count > acc.count)
+    ) return { prefix, count }
     return acc
   }, { prefix: '', count: 0 })
   return longestPrefix.prefix
